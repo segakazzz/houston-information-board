@@ -4,6 +4,9 @@ const app = express()
 const dbConfigs = require('./knexfile.js')
 const db = require('knex')(dbConfigs.development)
 const path = require('path')
+const { getAllPosts } = require('./src/db/posts')
+
+
 
 const port = 5000
 
@@ -24,7 +27,12 @@ app.post('/signout', (req, res) => {
 })
 
 app.get('/posts', (req, res) => {
-
+    getAllPosts().then((allPosts)=>{
+        res.send({
+            data: allPosts,
+            statusCode: 200
+        })
+    })
 })
 
 app.put('/posts/:postid', (req, res) => {

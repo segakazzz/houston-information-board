@@ -8,6 +8,6 @@ exports.seed = knex => {
         {nickname: 'test user 1', userimage: 'path2img', email:'test1@test.com', password:''},
         {nickname: 'test user 2', userimage: 'path2img', email:'test2@test.com', password:''},
         {nickname: 'test user 3', userimage: 'path2img', email:'test3@test.com', password:''},
-      ]);
-    });
-};
+      ])
+    })
+}
