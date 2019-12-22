@@ -1,38 +1,60 @@
 import React from 'react'
-
-import { makeStyles } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 import SingleAdvertisement from './SingleAdvertisement'
 import { Grid } from '@material-ui/core'
+import { connect } from 'react-redux'
+import { fetchAdvertisements } from '../redux/advertisementsReducer'
 
-const useStyles = makeStyles(theme => ({
+
+const styles = theme => ({
   root: {
     margin: theme.spacing(2)
   }
-}))
+})
 
-const Advertisements = () => {
-  const classes = useStyles()
-  return (
-    <div className={classes.root}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-          <SingleAdvertisement />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-          <SingleAdvertisement />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-          <SingleAdvertisement />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-          <SingleAdvertisement />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-          <SingleAdvertisement />
-        </Grid>
-      </Grid>
-    </div>
-  )
+class Advertisements extends React.Component {
+  constructor (props) {
+    super(props)
+  }
+
+  componentDidMount(){
+      this.props.fetchAdvertisements()
+  }
+
+
+  render() {
+      const {classes, data} = this.props
+      return (
+        <div className={classes.root}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6} xl={4}>
+              <SingleAdvertisement />
+            </Grid>
+            <Grid item xs={12} md={6} xl={4}>
+              <SingleAdvertisement />
+            </Grid>
+            <Grid item xs={12} md={6} xl={4}>
+              <SingleAdvertisement />
+            </Grid>
+            <Grid item xs={12} md={6} xl={4}>
+              <SingleAdvertisement />
+            </Grid>
+            <Grid item xs={12} md={6} xl={4}>
+              <SingleAdvertisement />
+            </Grid>
+          </Grid>
+        </div>
+      )
+  }
 }
 
-export default Advertisements
+const mapStateToProps = (state, ownProps) => {
+  return {data: state.advertisements}
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchAdvertisements: () => dispatch(fetchAdvertisements())
+  }
+}
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Advertisements))
