@@ -7,7 +7,6 @@ import Divider from '@material-ui/core/Divider'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
 import HomeIcon from '@material-ui/icons/Home'
 import LocationCityIcon from '@material-ui/icons/LocationCity'
 import ShopIcon from '@material-ui/icons/Shop'
@@ -19,6 +18,8 @@ import BusinessIcon from '@material-ui/icons/Business'
 import WebIcon from '@material-ui/icons/Web'
 import ContactMailIcon from '@material-ui/icons/ContactMail'
 import PolicyIcon from '@material-ui/icons/Policy'
+import { connect } from 'react-redux'
+import { movePage } from '../redux/pageReducer'
 
 const drawerWidth = 200
 
@@ -36,8 +37,7 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: theme.spacing(0)
   },
   listItemIcon: {
-      minWidth: theme.spacing(5)
-
+    minWidth: theme.spacing(5)
   }
 }))
 
@@ -73,7 +73,7 @@ const SideMenu = () => {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <CustomListItem text={'Home'} icon={<HomeIcon />} />
+        <CustomListItem text={'Home'} icon={<HomeIcon />} onClick={()=>movePage()}/>
       </List>
       <Divider />
       <List>
@@ -98,4 +98,10 @@ const SideMenu = () => {
   )
 }
 
-export default SideMenu
+const mapDispatchToProps = dispatch => {
+  return {
+    movePage: (newPage) => dispatch(movePage(newPage))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(SideMenu)

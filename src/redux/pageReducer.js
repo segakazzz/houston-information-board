@@ -1,10 +1,8 @@
 import {
-  PAGE_ADVERTISEMENT,
-  PAGE_INFOBOARD_SELL_BUY,
-  PAGE_INFOBOARD_EVENTS
+  PAGE_ADVERTISEMENT
 } from '../constants'
 
-const CHANGE_PAGE = 'PAGE/CHANGE_PAGE'
+const CHANGE_PAGE = 'CHANGE_PAGE'
 
 const initialState = {
   windowWidth: null,
@@ -12,7 +10,7 @@ const initialState = {
   currentPage: PAGE_ADVERTISEMENT
 }
 
-const movePage = newPage => {
+export const movePage = newPage => {
   return {
     type: CHANGE_PAGE,
     moveTo: newPage
