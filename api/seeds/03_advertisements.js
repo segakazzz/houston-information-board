@@ -10,8 +10,11 @@ const fakeAdvertisements = [...Array(10).keys()].map(() => {
     address_country: 'US',
     catchphrase: faker.company.catchPhrase(),
     description: faker.lorem.sentences(),
+    latitude: faker.address.latitude(),
+    longitude: faker.address.longitude(),
     imageurl: `https://picsum.photos/500?blur&random=${faker.random.number() *
     faker.random.number()}`,
+    url: 'https://www.google.com/'
   }
 })
 
