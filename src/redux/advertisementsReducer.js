@@ -1,11 +1,11 @@
 const REQUEST_ADVERTIESEMENTS = 'REQUEST_ADVERTIESEMENTS'
 const RECEIVE_ADVERTISEMENTS = 'RECEIVE_ADVERTISEMENTS'
 const REQUEST_FAIL_ADVERTISEMENTS = 'REQUEST_FAIL_ADVERTISEMENTS'
-const ADVERTISEMENT_URL = 'http://localhost:5000/posts'
+const ADVERTISEMENT_URL = 'http://localhost:5000/advertisements'
 
 
 const initialState = {
-    advertisements: null,
+    advertisements: [],
     isLoading: false,
     error: false,
     errorMessage: null

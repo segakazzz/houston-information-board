@@ -36,7 +36,7 @@ const NavBar = () => {
           <MenuIcon />
         </IconButton>
         <Typography variant='h6' className={classes.title}>
-          Houston Navigation
+            Bulletin board for smaller community
         </Typography>
         <Button color='inherit'>Login</Button>
       </Toolbar>
