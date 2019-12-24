@@ -1,13 +1,11 @@
-import {
-  PAGE_ADVERTISEMENT
-} from '../constants'
+import {PAGES} from '../constants'
 
 const CHANGE_PAGE = 'CHANGE_PAGE'
 
 const initialState = {
   windowWidth: null,
   windowHeight: null,
-  currentPage: PAGE_ADVERTISEMENT
+  currentPage: PAGES.ADVERTISEMENT
 }
 
 export const movePage = newPage => {
@@ -18,6 +16,7 @@ export const movePage = newPage => {
 }
 
 export default (state = initialState, action) => {
+  console.log(action)
   const { type } = action
   switch (type) {
     case CHANGE_PAGE:

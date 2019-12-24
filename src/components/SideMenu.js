@@ -20,6 +20,7 @@ import ContactMailIcon from '@material-ui/icons/ContactMail'
 import PolicyIcon from '@material-ui/icons/Policy'
 import { connect } from 'react-redux'
 import { movePage } from '../redux/pageReducer'
+import { PAGES } from '../constants'
 
 const drawerWidth = 200
 
@@ -43,13 +44,30 @@ const useStyles = makeStyles(theme => ({
 
 const CustomListItem = props => {
   const classes = useStyles()
+  const page = props.page || PAGES.ADVERTISEMENT
+  console.log(page)
   return (
-    <ListItem className={classes.listItem} button>
+    <ListItem
+      className={classes.listItem}
+      button
+      onClick={() => props.movePage(page)}
+    >
       <ListItemIcon className={classes.listItemIcon}>{props.icon}</ListItemIcon>
       <ListItemText primary={props.text} />
     </ListItem>
   )
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    movePage: newPage => dispatch(movePage(newPage))
+  }
+}
+
+const ConnectedCustomListItem = connect(
+  null,
+  mapDispatchToProps
+)(CustomListItem)
 
 const CustomSubHeader = props => {
   return (
@@ -59,7 +77,7 @@ const CustomSubHeader = props => {
   )
 }
 
-const SideMenu = () => {
+const SideMenu = props => {
   const classes = useStyles()
   return (
     <Drawer
@@ -73,35 +91,73 @@ const SideMenu = () => {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <CustomListItem text={'Home'} icon={<HomeIcon />} onClick={()=>movePage()}/>
+        <ConnectedCustomListItem
+          text={'Home'}
+          icon={<HomeIcon />}
+          page={PAGES.ADVERTISEMENT}
+        />
       </List>
       <Divider />
       <List>
-        <CustomListItem text={'Town Guide'} icon={<LocationCityIcon />} />
+        <ConnectedCustomListItem
+          text={'Town Guide'}
+          icon={<LocationCityIcon />}
+          page={PAGES.TOWN_GUIDE}
+        />
       </List>
       <Divider />
       <List subheader={<CustomSubHeader text={'Bulletin board'} />}>
-        <CustomListItem text={'Give Away / Sell'} icon={<ShopIcon />} />
-        <CustomListItem text={'Buy / Need'} icon={<ShopTwoIcon />} />
-        <CustomListItem text={'Event'} icon={<EventIcon />} />
-        <CustomListItem text={'Life'} icon={<SentimentSatisfiedAltIcon />} />
-        <CustomListItem text={'Recruitment'} icon={<WorkIcon />} />
+        <ConnectedCustomListItem
+          text={'Give Away / Sell'}
+          icon={<ShopIcon />}
+          page={PAGES.BULLETBOARD_GIVEAWAY_SELL}
+        />
+        <ConnectedCustomListItem
+          text={'Buy / Need'}
+          icon={<ShopTwoIcon />}
+          page={PAGES.BULLETBOARD_BUY_NEED}
+        />
+        <ConnectedCustomListItem
+          text={'Event'}
+          icon={<EventIcon />}
+          page={PAGES.BULLETBOARD_EVENTS}
+        />
+        <ConnectedCustomListItem
+          text={'Life'}
+          icon={<SentimentSatisfiedAltIcon />}
+          page={PAGES.BULLETBOARD_LIFE}
+        />
+        <ConnectedCustomListItem
+          text={'Recruitment'}
+          icon={<WorkIcon />}
+          page={PAGES.BULLETBOARD_RECRUITMENT}
+        />
       </List>
       <Divider />
       <List subheader={<CustomSubHeader text={'About This Site'} />}>
-        <CustomListItem text={'Company'} icon={<BusinessIcon />} />
-        <CustomListItem text={'Advertisement'} icon={<WebIcon />} />
-        <CustomListItem text={'Contact'} icon={<ContactMailIcon />} />
-        <CustomListItem text={'Site Policy'} icon={<PolicyIcon />} />
+        <ConnectedCustomListItem
+          text={'Company'}
+          icon={<BusinessIcon />}
+          page={PAGES.ABOUT_COMPANY}
+        />
+        <ConnectedCustomListItem
+          text={'Advertisement'}
+          icon={<WebIcon />}
+          page={PAGES.ABOUT_ADVERTISEMENT}
+        />
+        <ConnectedCustomListItem
+          text={'Contact'}
+          icon={<ContactMailIcon />}
+          page={PAGES.ABOUT_CONTACT}
+        />
+        <ConnectedCustomListItem
+          text={'Site Policy'}
+          icon={<PolicyIcon />}
+          page={PAGES.ABOUT_SITEPOLICY}
+        />
       </List>
     </Drawer>
   )
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    movePage: (newPage) => dispatch(movePage(newPage))
-  }
-}
-
-export default connect(null, mapDispatchToProps)(SideMenu)
+export default SideMenu

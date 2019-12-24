@@ -7,7 +7,7 @@ import { fetchAdvertisements } from '../redux/advertisementsReducer'
 
 const styles = theme => ({
   root: {
-    margin: theme.spacing(2)
+    // margin: theme.spacing(2)
   }
 })
 
