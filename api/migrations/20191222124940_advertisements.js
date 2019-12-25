@@ -17,7 +17,7 @@ exports.up = knex => {
       table.timestamp('posttime').defaultTo(knex.fn.now())
       table.timestamp('lastupdatetime').defaultTo(knex.fn.now())
       table.timestamp('validuntil')
-    })
+    }).raw('ALTER TABLE advertisements AUTO_INCREMENT = 0')
   }
   
   exports.down = knex => {
