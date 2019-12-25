@@ -5,7 +5,7 @@ const CHANGE_PAGE = 'CHANGE_PAGE'
 const initialState = {
   windowWidth: null,
   windowHeight: null,
-  currentPage: PAGES.ADVERTISEMENT
+  currentPage: PAGES.BULLETBOARD_BUY_NEED
 }
 
 export const movePage = newPage => {
