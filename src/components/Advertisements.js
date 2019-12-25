@@ -12,9 +12,9 @@ const styles = theme => ({
 })
 
 class Advertisements extends React.Component {
-  constructor (props) {
-    super(props)
-  }
+  // constructor (props) {
+  //   super(props)
+  // }
 
   componentDidMount () {
     this.props.fetchAdvertisements()

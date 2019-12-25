@@ -5,14 +5,13 @@ import Button from '@material-ui/core/Button'
 import { Grid } from '@material-ui/core'
 import BulletinBoardActionIcons from './BulletinBoardActionIcons'
 import PublishIcon from '@material-ui/icons/Publish'
+import BulletinBoardPosts from './BulletinBoardPosts'
 
 const useStyles = makeStyles(theme => ({
   formRoot: {
     margin: theme.spacing(1)
   },
-  listRoot: {
-    margin: theme.spacing(1)
-  },
+
   icon: {
     marginRight: theme.spacing(1)
   },
@@ -71,17 +70,12 @@ const BulletinBoardForm = () => {
     </div>
   )
 }
-const BulletinBoardList = () => {
-  const classes = useStyles()
-  return <div className={classes.listRoot}>List Here...</div>
-}
 
 const BulletinBoard = () => {
-  const classes = useStyles()
   return (
     <div>
       <BulletinBoardForm />
-      <BulletinBoardList />
+      <BulletinBoardPosts />
     </div>
   )
 }
