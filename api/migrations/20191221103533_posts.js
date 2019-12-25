@@ -9,7 +9,7 @@ exports.up = knex => {
     table.integer('interested').defaultTo(0)
     table.timestamp('posttime').defaultTo(knex.fn.now())
     table.timestamp('lastupdatetime').defaultTo(knex.fn.now())
-  }).raw('ALTER TABLE posts AUTO_INCREMENT = 0')
+  })
 }
 
 exports.down = knex => {

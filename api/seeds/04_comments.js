@@ -2,7 +2,7 @@ const faker = require('faker')
 const moment = require('moment')
 
 const getRandomInt = max => {
-  return Math.floor(Math.random() * Math.floor(max - 1)) + 1
+  return Math.floor(Math.random() * Math.floor(max)) + 1
 }
 
 const fakeComments = [...Array(100).keys()].map(() => {
@@ -20,7 +20,7 @@ const fakeComments = [...Array(100).keys()].map(() => {
 exports.seed = knex => {
   // Deletes ALL existing entries
   return knex('comments')
-    .del()
+    .truncate()
     .then(function () {
       // Inserts seed entries
       return knex('comments').insert(fakeComments)

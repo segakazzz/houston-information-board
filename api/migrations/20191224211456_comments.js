@@ -7,7 +7,7 @@ exports.up = knex => {
       table.boolean('active').defaultTo(true)
       table.timestamp('posttime').defaultTo(knex.fn.now())
       table.timestamp('lastupdatetime').defaultTo(knex.fn.now())
-    }).raw('ALTER TABLE comments AUTO_INCREMENT = 0')
+    })
   }
   
   exports.down = knex => {

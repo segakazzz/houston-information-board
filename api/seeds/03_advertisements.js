@@ -21,7 +21,7 @@ const fakeAdvertisements = [...Array(10).keys()].map(() => {
 exports.seed = function (knex) {
   // Deletes ALL existing entries
   return knex('advertisements')
-    .del()
+    .truncate()
     .then(function () {
       // Inserts seed entries
       return knex('advertisements').insert(fakeAdvertisements)

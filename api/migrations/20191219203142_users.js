@@ -13,7 +13,7 @@ exports.up = knex => {
         table.boolean('active').defaultTo(true)
         table.timestamp('createdtime').defaultTo(knex.fn.now())
         table.timestamp('lastupdatetime').defaultTo(knex.fn.now())
-    }).raw('ALTER TABLE users AUTO_INCREMENT = 0')
+    })
 }
 
 exports.down = knex => {
