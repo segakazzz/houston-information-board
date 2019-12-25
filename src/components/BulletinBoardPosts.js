@@ -21,7 +21,7 @@ class BulletinBoardPosts extends React.Component{
             {
                 data.posts.map((obj, idx) => {
                     console.log(obj)
-                return <div key={idx}>{obj.contents}</div>
+                return <div key={idx}>{obj.title}</div>
                 })
             }
         </div>
