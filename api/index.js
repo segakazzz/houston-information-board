@@ -2,8 +2,14 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const { getAllPosts } = require('./src/db/posts')
+const { getAllComments } = require('./src/db/comments')
 const { getAllAdvertisements } = require('./src/db/advertisements')
 const port = 5000
+
+const setHeader = (res) => {
+    res.header('Access-Control-Allow-Credentials', true)
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+}
 
 app.use(cors())
 
@@ -24,19 +30,25 @@ app.post('/signout', (req, res) => {
 })
 
 app.get('/posts', (req, res) => {
-    res.header('Access-Control-Allow-Credentials', true)
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
-    getAllPosts().then((allPosts)=>{
+    setHeader(res)
+    Promise.all([getAllPosts(),getAllComments()])
+    .then((values)=>{
         res.send({
-            data: allPosts,
+            data: generatePostsData(values[0], values[1]),
             statusCode: 200
         })
     })
 })
 
+const generatePostsData = (posts, comments) => {
+    return posts.map(post => {
+        const filteredComments = comments.filter(comment => comment.postid === post.id)
+        return { ...post, comments: filteredComments}
+    })
+}
+
 app.get('/advertisements', (req, res) => {
-    res.header('Access-Control-Allow-Credentials', true)
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+    setHeader(res)
     getAllAdvertisements().then((allAdvertisements)=>{
         res.send({
             data: allAdvertisements,
@@ -65,3 +77,4 @@ app.delete('/response/:responseid', (req, res) => {
 app.listen(port, function () {
     console.log('Listening on port ' + port + ' 👍')
 })
+
