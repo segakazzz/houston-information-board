@@ -5,9 +5,8 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
-import PlayArrowIcon from '@material-ui/icons/PlayArrow'
-import SkipNextIcon from '@material-ui/icons/SkipNext'
+import ReplyIcon from '@material-ui/icons/Reply'
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -51,22 +50,11 @@ const SinglePost = props => {
           </Typography>
         </CardContent>
         <div className={classes.controls}>
-          <IconButton aria-label='previous'>
-            {theme.direction === 'rtl' ? (
-              <SkipNextIcon />
-            ) : (
-              <SkipPreviousIcon />
-            )}
+          <IconButton aria-label='response'>
+            <ReplyIcon/>
           </IconButton>
-          <IconButton aria-label='play/pause'>
-            <PlayArrowIcon className={classes.playIcon} />
-          </IconButton>
-          <IconButton aria-label='next'>
-            {theme.direction === 'rtl' ? (
-              <SkipPreviousIcon />
-            ) : (
-              <SkipNextIcon />
-            )}
+          <IconButton aria-label='like'>
+            <ThumbUpAltIcon/>
           </IconButton>
         </div>
       </div>
