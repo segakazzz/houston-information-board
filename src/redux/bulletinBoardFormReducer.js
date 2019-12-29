@@ -1,4 +1,4 @@
-const UPDATE_FORM = 'UPDATE_FORM'
+const SUBMIT_FORM = 'SUBMIT_FORM'
 // const OPEN_MODAL = 'OPEN_MODAL'
 // const ADD_PHOTO = 'ADD_PHOTO'
 // const ADD_LOCATION = 'ADD_LOCATION'
@@ -22,19 +22,18 @@ const initialState = {
   errorMessage: null
 }
 
-export const updateForm = (title, text) => ({
+export const updateForm = (field, value) => ({
   type: UPDATE_FORM,
-  title: title,
-  text: text
+  field: field,
+  value: value
 })
 
 export default (state = initialState, action) => {
   // console.log(action)
   const { type } = action
   switch (type) {
-    case UPDATE_FORM:
-      const { title, text } = action
-      return { ...state, title: title, text: text }
+    case SUBMIT_FORM:
+      return {...state}
     default:
       return { ...state }
   }
