@@ -1,7 +1,5 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import { connect } from 'react-redux'
-import { fetchPosts } from '../redux/bulletinBoardPostsReducer'
 import SinglePost from './SinglePost'
 import Grid from '@material-ui/core/Grid'
 
@@ -34,16 +32,5 @@ class BulletinBoardPosts extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return { data: state.bulletinPosts }
-}
+export default withStyles(styles)(BulletinBoardPosts)
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchPosts: () => dispatch(fetchPosts())
-  }
-}
-
-export default withStyles(styles)(
-  connect(mapStateToProps, mapDispatchToProps)(BulletinBoardPosts)
-)

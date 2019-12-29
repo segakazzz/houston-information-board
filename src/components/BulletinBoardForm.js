@@ -5,8 +5,6 @@ import Button from '@material-ui/core/Button'
 import { Grid } from '@material-ui/core'
 import BulletinBoardActionIcons from './BulletinBoardActionIcons'
 import PublishIcon from '@material-ui/icons/Publish'
-import { connect } from 'react-redux'
-// import { updateForm } from '../redux/bulletinBoardFormReducer'
 
 const styles = theme => ({
   formRoot: {
@@ -32,14 +30,19 @@ class BulletinBoardForm extends React.Component {
       title: '',
       text: ''
     }
-    // this.updateForm = this.updateForm.bind(this)
+    this.submitForm = this.submitForm.bind(this)
   }
 
   updateForm(e, field) {
-    console.log(e.target.value, field)
+    // console.log(e.target.value, field)
     const obj = {}
     obj[field] = e.target.value
     this.setState(obj)
+  }
+
+  submitForm() {
+    console.log('submitting...')
+    this.props.submitForm()
   }
 
   render () {
@@ -67,6 +70,7 @@ class BulletinBoardForm extends React.Component {
                   variant='text'
                   color='primary'
                   size='small'
+                  onClick={this.submitForm}
                 >
                   <PublishIcon className={classes.icon} /> POST
                 </Button>
@@ -94,14 +98,4 @@ class BulletinBoardForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return { data: state.bulletinForm }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    // updateForm: (field, value) => dispatch(updateForm(field, value))
-  }
-}
-
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(BulletinBoardForm))
+export default withStyles(styles)(BulletinBoardForm)
