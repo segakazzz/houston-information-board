@@ -42,6 +42,7 @@ class BulletinBoardForm extends React.Component {
 
   submitPost() {
     console.log('submitting...')
+    // console.log(this.state)
     this.props.submitPost(this.state)
     this.setState({
       title: '',

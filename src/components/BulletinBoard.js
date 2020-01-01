@@ -21,7 +21,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
-    submitPost: ()=>dispatch(submitPost()),
+    submitPost: (form)=>dispatch(submitPost(form)),
     // updateForm: (type, value)=> dispatch(updateForm())
   }
 }

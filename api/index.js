@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const { getAllPosts } = require('./src/db/posts')
+const { getAllPosts, insertNewPost } = require('./src/db/posts')
 const { getAllComments } = require('./src/db/comments')
 const { getAllAdvertisements } = require('./src/db/advertisements')
 const port = 5000
@@ -11,6 +11,8 @@ const setHeader = (res) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
 }
 
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 app.use(cors())
 
 app.get('/', (req, res) => {
@@ -37,6 +39,16 @@ app.get('/posts', (req, res) => {
             data: generatePostsData(values[0], values[1]),
             statusCode: 200
         })
+    })
+})
+
+app.post('/posts', (req, res) => {
+    setHeader(res)
+    console.log(req)
+    insertNewPost()
+    .then((values)=>{
+        console.log(values)
+
     })
 })
 

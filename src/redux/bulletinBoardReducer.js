@@ -8,6 +8,7 @@ const RESPONSE_SUBMIT_POST = 'RESPONSE_SUBMIT_POST'
 
 const POSTS_URL = 'http://localhost:5000/posts'
 
+
 const getInitialForm = () => {
   const form = {
     title: null,
@@ -68,10 +69,17 @@ const failRequest = error => {
   }
 }
 
-export const submitPost = () => {
+export const submitPost = (form) => {
+  const formData = new FormData()
+  formData.append('form', form)
+  console.log(form)
   return dispatch => {
     dispatch(requestSubmitPost())
-    return fetch(POSTS_URL, { credentials: 'include' })
+    return fetch(POSTS_URL, { 
+      credentials: 'include',
+      method: 'POST',
+      body: formData
+     })
       .then(res => {
         if (!res.ok) {
           return Promise.resolve(new Error(res.statusText))
