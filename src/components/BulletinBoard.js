@@ -1,7 +1,7 @@
 import React from 'react'
 import BulletinBoardPosts from './BulletinBoardPosts'
 import BulletinBoardForm from './BulletinBoardForm'
-import {fetchPosts, submitForm} from '../redux/bulletinBoardReducer'
+import {fetchPosts, submitPost } from '../redux/bulletinBoardReducer'
 import {connect} from 'react-redux' 
 
 
@@ -21,7 +21,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
-    submitForm: ()=>dispatch(submitForm())
+    submitPost: ()=>dispatch(submitPost()),
+    // updateForm: (type, value)=> dispatch(updateForm())
   }
 }
 

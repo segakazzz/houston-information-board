@@ -30,19 +30,23 @@ class BulletinBoardForm extends React.Component {
       title: '',
       text: ''
     }
-    this.submitForm = this.submitForm.bind(this)
+    this.submitPost = this.submitPost.bind(this)
   }
 
   updateForm(e, field) {
     // console.log(e.target.value, field)
     const obj = {}
-    obj[field] = e.target.value
+    obj[field] = e.target.value || ''
     this.setState(obj)
   }
 
-  submitForm() {
+  submitPost() {
     console.log('submitting...')
-    this.props.submitForm()
+    this.props.submitPost(this.state)
+    this.setState({
+      title: '',
+      text: ''
+    })
   }
 
   render () {
@@ -52,16 +56,6 @@ class BulletinBoardForm extends React.Component {
       <div className={classes.formRoot}>
         <Grid container spacing={1} alignItems='center'>
           <Grid item xs={12} md={6}>
-            <TextField
-              fullWidth
-              onChange={(e) => this.updateForm(e, 'title')}
-              id='outlined-multiline-static'
-              label='Title'
-              placeholder='Placeholder'
-              variant='outlined' value={this.state.title}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
             <div className={classes.actionButtons}>
               <BulletinBoardActionIcons />
               <div>
@@ -70,18 +64,27 @@ class BulletinBoardForm extends React.Component {
                   variant='text'
                   color='primary'
                   size='small'
-                  onClick={this.submitForm}
+                  onClick={this.submitPost}
                 >
                   <PublishIcon className={classes.icon} /> POST
                 </Button>
               </div>
             </div>
           </Grid>
-
+          <Grid item xs={12} md={6}>
+            <TextField
+              fullWidth
+              onChange={(e) => this.updateForm(e, 'title')} 
+              id='outlined-multiline-static'
+              label='Title'
+              placeholder='Placeholder'
+              variant='outlined' value={this.state.title}
+            />
+          </Grid>
           <Grid item xs={12}>
             <TextField
               size='small'
-              onChange={(e) => this.updateForm(e, 'text')}
+              onChange={(e) => this.updateForm(e, 'text')} 
               fullWidth
               id='outlined-multiline-static'
               label='What you want to shere'
