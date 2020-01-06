@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button'
 import { Grid } from '@material-ui/core'
 import BulletinBoardActionIcons from './BulletinBoardActionIcons'
 import PublishIcon from '@material-ui/icons/Publish'
+import BulletinBoardFormDialog from './BulletinBoardFormDialog'
 
 const styles = theme => ({
   formRoot: {
@@ -34,22 +35,22 @@ class BulletinBoardForm extends React.Component {
     this.submitPost = this.submitPost.bind(this)
   }
 
-  componentDidUpdate(prevProps, prevState){
-    if (this.props.category !== prevProps.category){
+  componentDidUpdate (prevProps, prevState) {
+    if (this.props.category !== prevProps.category) {
       this.setState({
         category: this.props.category
       })
     }
   }
 
-  updateForm(e, field) {
+  updateForm (e, field) {
     // console.log(e.target.value, field)
     const obj = {}
     obj[field] = e.target.value || ''
     this.setState(obj)
   }
 
-  submitPost() {
+  submitPost () {
     console.log('submitting...')
     // console.log(this.state)
     this.props.submitPost(this.state)
@@ -60,14 +61,24 @@ class BulletinBoardForm extends React.Component {
   }
 
   render () {
-    const { data, classes } = this.props
-    // console.log(data)
+    const { classes, openDialog } = this.props
     return (
       <div className={classes.formRoot}>
         <Grid container spacing={1} alignItems='center'>
           <Grid item xs={12} md={6}>
+            <TextField
+              fullWidth
+              onChange={e => this.updateForm(e, 'title')}
+              id='outlined-multiline-static'
+              label='Title'
+              placeholder='Placeholder'
+              variant='outlined'
+              value={this.state.title}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
             <div className={classes.actionButtons}>
-              <BulletinBoardActionIcons />
+              <BulletinBoardActionIcons openDialog={openDialog} />
               <div>
                 <Button
                   className={classes.postButton}
@@ -81,20 +92,10 @@ class BulletinBoardForm extends React.Component {
               </div>
             </div>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              fullWidth
-              onChange={(e) => this.updateForm(e, 'title')} 
-              id='outlined-multiline-static'
-              label='Title'
-              placeholder='Placeholder'
-              variant='outlined' value={this.state.title}
-            />
-          </Grid>
           <Grid item xs={12}>
             <TextField
               size='small'
-              onChange={(e) => this.updateForm(e, 'text')} 
+              onChange={e => this.updateForm(e, 'text')}
               fullWidth
               id='outlined-multiline-static'
               label='What you want to shere'
@@ -106,6 +107,7 @@ class BulletinBoardForm extends React.Component {
             />
           </Grid>
         </Grid>
+        <BulletinBoardFormDialog {...this.props} />
       </div>
     )
   }

@@ -12,7 +12,7 @@ const icons = [
   {
     icon: <AddAPhotoIcon/>,
     title: 'Photo',
-    backgroundColor: 'red'
+    backgroundColor: 'red',
   },
   {
     icon: <AddLocationIcon/>,
@@ -87,7 +87,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const BulletinBoardActionIcons = () => {
+const BulletinBoardActionIcons = (props) => {
   const classes = useStyles()
 
   return (
@@ -98,6 +98,7 @@ const BulletinBoardActionIcons = () => {
           key={icon.title}
           className={classes.icon}
           focusVisibleClassName={classes.focusVisible}
+          onClick={()=>props.openDialog(icon.title)}
         >
           <span
             className={classes.iconSrc}

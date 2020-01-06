@@ -6,6 +6,9 @@ const REQUEST_FAIL_POSTS = 'REQUEST_FAIL_POSTS'
 const REQUEST_SUBMIT_POST = 'REQUEST_SUBMIT_POST'
 const RESPONSE_SUBMIT_POST = 'RESPONSE_SUBMIT_POST'
 
+const OPEN_DIALOG = 'OPEN_DIALOG'
+const CLOSE_DIALOG = 'CLOSE_DIALOG'
+
 const POSTS_URL = 'http://localhost:5000/posts'
 
 
@@ -27,7 +30,9 @@ const initialState = {
   isLoading: false,
   isSubmitting: false,
   error: false,
-  errorMessage: null
+  errorMessage: null,
+  openDialog: false,
+  dialogType: null
 }
 
 const requestPosts = () => {
@@ -66,6 +71,19 @@ const failRequest = error => {
     type: REQUEST_FAIL_POSTS,
     error: true,
     errorMessage: error
+  }
+}
+
+export const openDialog = dialogType => {
+  return {
+    type: OPEN_DIALOG,
+    dialogType: dialogType
+  }
+}
+
+export const closeDialog = () => {
+  return {
+    type: CLOSE_DIALOG
   }
 }
 
@@ -132,6 +150,10 @@ export default (state = initialState, action) => {
     case RESPONSE_SUBMIT_POST:
       const newPosts = action.newPost.concat(state.posts) 
       return { ...state, isSubmitting: false, posts: newPosts}
+    case OPEN_DIALOG:
+      return { ...state, openDialog: true, dialogType: action.dialogType }
+    case CLOSE_DIALOG:
+      return { ...state, openDialog: false, dialogType: null }
     default:
       return { ...state }
   }
