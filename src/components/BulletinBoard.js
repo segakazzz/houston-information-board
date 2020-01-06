@@ -15,8 +15,8 @@ const BulletinBoard = (props) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps)
-  return { data: state.bulletinBoard }
+  const category = ownProps.page.replace('PAGE/BULLETINBOARD_', '')
+  return { data: state.bulletinBoard, category: category }
 }
 
 const mapDispatchToProps = dispatch => {

@@ -15,11 +15,12 @@ class BulletinBoardPosts extends React.Component {
   }
 
   render () {
-    const { classes, data } = this.props
+    const { classes, data, category } = this.props
+    const posts = data.posts.filter(post => post.category === category)
     // console.log(data.posts)
     return (
       <Grid container spacing={1} className={classes.listRoot}>
-        {data.posts.map((obj, idx) => {
+        {posts.map((obj, idx) => {
           // console.log(obj)
           return (
             <Grid item xs={12} md={6} key={idx}>

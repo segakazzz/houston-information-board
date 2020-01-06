@@ -1,6 +1,14 @@
 const faker = require('faker')
 const uuidv4 = require('uuid/v4')
 
+const categories = [
+  'GIVEAWAY_SELL',
+  'BUY_NEED',
+  'EVENTS',
+  'RECRUITMENT',
+  'LIFE',
+]
+
 const fakePosts = [...Array(100).keys()].map(() => {
   const uuid = uuidv4()
   const replaced = uuid.replace(/-/g, '')
@@ -9,7 +17,8 @@ const fakePosts = [...Array(100).keys()].map(() => {
     text: faker.lorem.paragraph(),
     uuid: replaced,
     posttime: faker.date.past(),
-    lastupdatetime: faker.date.past()
+    lastupdatetime: faker.date.past(),
+    category: categories[Math.floor(Math.random() * categories.length)]
   }
 })
 

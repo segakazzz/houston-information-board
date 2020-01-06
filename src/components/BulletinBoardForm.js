@@ -28,7 +28,8 @@ class BulletinBoardForm extends React.Component {
     super(props)
     this.state = {
       title: '',
-      text: ''
+      text: '',
+      category: props.category
     }
     this.submitPost = this.submitPost.bind(this)
   }

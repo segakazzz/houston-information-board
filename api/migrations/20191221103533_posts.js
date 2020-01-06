@@ -1,6 +1,7 @@
 exports.up = knex => {
   return knex.schema.createTable('posts', table => {
     table.increments('id')
+    table.string('category', 100)
     table.string('title')
     table.text('text')
     table.string('uuid', 32).unique('uuid')

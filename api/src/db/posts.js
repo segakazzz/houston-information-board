@@ -6,14 +6,11 @@ const getAllPosts = () => db('posts').select('*').orderBy('posttime', 'desc')
 const getSinglePost = (id) => db('posts').select('*').where({id: id})
 
 const insertNewPost = (form) => {
-    return db('posts').insert(
-        {
-            title: form.title, 
-            text: form.text,
-            uuid: uuid().replace(/-/g, ''),
-            active: 1,
-            interested: 0
-        })
+    const insertData = form
+    insertData.uuid = uuid().replace(/-/g, '')
+    insertData.active = 1
+    insertData.interested = 0
+    return db('posts').insert(insertData)
 }
 
 module.exports = {
