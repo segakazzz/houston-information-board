@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography'
 import ReplyIcon from '@material-ui/icons/Reply'
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: {
     display: 'flex'
   },
@@ -37,7 +37,6 @@ const useStyles = makeStyles(theme => ({
 const SinglePost = props => {
   const { data } = props
   const classes = useStyles()
-  const theme = useTheme()
   return (
     <Card className={classes.card}>
       <div className={classes.details}>

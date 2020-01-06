@@ -2,7 +2,7 @@ const REQUEST_POSTS = 'REQUEST_POSTS'
 const RECEIVE_POSTS = 'RECEIVE_POSTS'
 const REQUEST_FAIL_POSTS = 'REQUEST_FAIL_POSTS'
 
-const SUBMIT_POST = 'SUBMIT_POST'
+// const SUBMIT_POST = 'SUBMIT_POST'
 const REQUEST_SUBMIT_POST = 'REQUEST_SUBMIT_POST'
 const RESPONSE_SUBMIT_POST = 'RESPONSE_SUBMIT_POST'
 
@@ -69,16 +69,16 @@ const failRequest = error => {
   }
 }
 
-export const submitPost = (form) => {
-  const formData = new FormData()
-  formData.append('form', form)
-  console.log(form)
+export const submitPost = form => {
   return dispatch => {
     dispatch(requestSubmitPost())
     return fetch(POSTS_URL, { 
-      credentials: 'include',
       method: 'POST',
-      body: formData
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(form)
      })
       .then(res => {
         if (!res.ok) {
@@ -88,7 +88,10 @@ export const submitPost = (form) => {
           return res.json()
         }
       })
-      .then(json => dispatch(responseSubmitPost(json)))
+      .then(json => {
+        console.log(json)
+        dispatch(responseSubmitPost(json.data))
+      })
       .catch(error => {})
   }
 }
@@ -99,9 +102,10 @@ const requestSubmitPost = () => {
   }
 }
 
-const responseSubmitPost = () => {
+const responseSubmitPost = (newPost) => {
   return {
-    type: RESPONSE_SUBMIT_POST
+    type: RESPONSE_SUBMIT_POST,
+    newPost: newPost
   }
 }
 
@@ -126,7 +130,11 @@ export default (state = initialState, action) => {
     case REQUEST_SUBMIT_POST:
       return { ...state, isSubmitting: true}
     case RESPONSE_SUBMIT_POST:
-      return { ...state, isSubmitting: false}
+      console.log('here!')
+      const newPosts = action.newPost.concat(state.posts) 
+      console.log(action.newPost)
+      console.log(newPosts)
+      return { ...state, isSubmitting: false, posts: newPosts}
     default:
       return { ...state }
   }

@@ -3,6 +3,8 @@ const uuid= require('uuid/v4')
 
 const getAllPosts = () => db('posts').select('*').orderBy('posttime', 'desc')
 
+const getSinglePost = (id) => db('posts').select('*').where({id: id})
+
 const insertNewPost = (form) => {
     return db('posts').insert(
         {
@@ -16,5 +18,6 @@ const insertNewPost = (form) => {
 
 module.exports = {
     getAllPosts: getAllPosts,
+    getSinglePost: getSinglePost,
     insertNewPost: insertNewPost
 }

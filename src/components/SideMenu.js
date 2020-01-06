@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 const CustomListItem = props => {
   const classes = useStyles()
   const page = props.page || PAGES.ADVERTISEMENT
-  console.log(page)
+  // console.log(page)
   return (
     <ListItem
       className={classes.listItem}
@@ -110,27 +110,27 @@ const SideMenu = props => {
         <ConnectedCustomListItem
           text={'Give Away / Sell'}
           icon={<ShopIcon />}
-          page={PAGES.BULLETBOARD_GIVEAWAY_SELL}
+          page={PAGES.BULLETINBOARD_GIVEAWAY_SELL}
         />
         <ConnectedCustomListItem
           text={'Buy / Need'}
           icon={<ShopTwoIcon />}
-          page={PAGES.BULLETBOARD_BUY_NEED}
+          page={PAGES.BULLETINBOARD_BUY_NEED}
         />
         <ConnectedCustomListItem
           text={'Event'}
           icon={<EventIcon />}
-          page={PAGES.BULLETBOARD_EVENTS}
+          page={PAGES.BULLETINBOARD_EVENTS}
         />
         <ConnectedCustomListItem
           text={'Life'}
           icon={<SentimentSatisfiedAltIcon />}
-          page={PAGES.BULLETBOARD_LIFE}
+          page={PAGES.BULLETINBOARD_LIFE}
         />
         <ConnectedCustomListItem
           text={'Recruitment'}
           icon={<WorkIcon />}
-          page={PAGES.BULLETBOARD_RECRUITMENT}
+          page={PAGES.BULLETINBOARD_RECRUITMENT}
         />
       </List>
       <Divider />

@@ -15,6 +15,7 @@ const BulletinBoard = (props) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps)
   return { data: state.bulletinBoard }
 }
 

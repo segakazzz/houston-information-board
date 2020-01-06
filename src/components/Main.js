@@ -16,11 +16,11 @@ const useStyles = makeStyles(theme => ({
 
 const pageMapping = {}
 pageMapping[PAGES.ADVERTISEMENT] = <Advertisements />
-pageMapping[PAGES.BULLETBOARD_BUY_NEED] = <BulletinBoard />
-pageMapping[PAGES.BULLETBOARD_EVENTS] = <BulletinBoard />
-pageMapping[PAGES.BULLETBOARD_GIVEAWAY_SELL] = <BulletinBoard />
-pageMapping[PAGES.BULLETBOARD_LIFE] = <BulletinBoard />
-pageMapping[PAGES.BULLETBOARD_RECRUITMENT] = <BulletinBoard />
+pageMapping[PAGES.BULLETINBOARD_BUY_NEED] = <BulletinBoard category={PAGES.BULLETINBOARD_BUY_NEED} />
+pageMapping[PAGES.BULLETINBOARD_EVENTS] = <BulletinBoard category={PAGES.BULLETINBOARD_EVENTS}/>
+pageMapping[PAGES.BULLETINBOARD_GIVEAWAY_SELL] = <BulletinBoard category={PAGES.BULLETINBOARD_GIVEAWAY_SELL}/>
+pageMapping[PAGES.BULLETINBOARD_LIFE] = <BulletinBoard category={PAGES.BULLETINBOARD_LIFE}/>
+pageMapping[PAGES.BULLETINBOARD_RECRUITMENT] = <BulletinBoard category={PAGES.BULLETINBOARD_RECRUITMENT}/>
 pageMapping[PAGES.ABOUT_ADVERTISEMENT] = <UnderConstruction />
 pageMapping[PAGES.ABOUT_COMPANY] = <UnderConstruction />
 pageMapping[PAGES.ABOUT_SITEPOLICY] = <UnderConstruction />
@@ -29,6 +29,7 @@ pageMapping[PAGES.ABOUT_CONTACT] = <UnderConstruction />
 
 const mapStateToProps = (state, ownProps) => {
     const { currentPage } = state.page
+    // console.log(currentPage)
     return { currentPage: currentPage }
 }
 
