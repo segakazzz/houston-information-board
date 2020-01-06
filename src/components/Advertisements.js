@@ -4,6 +4,7 @@ import SingleAdvertisement from './SingleAdvertisement'
 import { Grid } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { fetchAdvertisements } from '../redux/advertisementsReducer'
+import Loading from './Loading'
 
 const styles = theme => ({
   root: {
@@ -22,10 +23,10 @@ class Advertisements extends React.Component {
 
   render () {
     const { classes, data } = this.props
-    console.log(data)
+    // console.log(data)
     return <div className={classes.root}>
       {data.isLoading === true ? (
-        <div>loading...</div>
+        <Loading />
       ) : (
         <Grid container spacing={2}>
           {data.advertisements.map((obj, idx) => {

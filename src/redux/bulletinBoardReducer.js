@@ -130,10 +130,7 @@ export default (state = initialState, action) => {
     case REQUEST_SUBMIT_POST:
       return { ...state, isSubmitting: true}
     case RESPONSE_SUBMIT_POST:
-      console.log('here!')
       const newPosts = action.newPost.concat(state.posts) 
-      console.log(action.newPost)
-      console.log(newPosts)
       return { ...state, isSubmitting: false, posts: newPosts}
     default:
       return { ...state }

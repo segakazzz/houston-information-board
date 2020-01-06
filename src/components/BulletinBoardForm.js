@@ -29,9 +29,17 @@ class BulletinBoardForm extends React.Component {
     this.state = {
       title: '',
       text: '',
-      category: props.category
+      category: null
     }
     this.submitPost = this.submitPost.bind(this)
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if (this.props.category !== prevProps.category){
+      this.setState({
+        category: this.props.category
+      })
+    }
   }
 
   updateForm(e, field) {

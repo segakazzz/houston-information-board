@@ -1,13 +1,13 @@
 import React from 'react'
 import BulletinBoardPosts from './BulletinBoardPosts'
 import BulletinBoardForm from './BulletinBoardForm'
-import {fetchPosts, submitPost } from '../redux/bulletinBoardReducer'
-import {connect} from 'react-redux' 
+import { fetchPosts, submitPost } from '../redux/bulletinBoardReducer'
+import { connect } from 'react-redux'
+// import Loading from './Loading'
 
-
-const BulletinBoard = (props) => {
+const BulletinBoard = props => {
   return (
-    <div>
+    <div style={{width: '100%'}}>
       <BulletinBoardForm {...props} />
       <BulletinBoardPosts {...props} />
     </div>
@@ -22,7 +22,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
-    submitPost: (form)=>dispatch(submitPost(form)),
+    submitPost: form => dispatch(submitPost(form))
     // updateForm: (type, value)=> dispatch(updateForm())
   }
 }

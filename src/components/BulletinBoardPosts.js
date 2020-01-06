@@ -2,6 +2,7 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import SinglePost from './SinglePost'
 import Grid from '@material-ui/core/Grid'
+import Loading from './Loading'
 
 const styles = theme => ({
   listRoot: {
@@ -19,7 +20,7 @@ class BulletinBoardPosts extends React.Component {
     const posts = data.posts.filter(post => post.category === category)
     // console.log(data.posts)
     return (
-      <Grid container spacing={1} className={classes.listRoot}>
+      data.isLoading ? <Loading /> : <Grid container spacing={1} className={classes.listRoot}>
         {posts.map((obj, idx) => {
           // console.log(obj)
           return (
