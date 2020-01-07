@@ -10,7 +10,7 @@ const fakeComments = [...Array(200).keys()].map(() => {
   // console.log(date)
   return {
     comment: faker.lorem.sentence(),
-    userid: getRandomInt(3),
+    userid: getRandomInt(10),
     postid: getRandomInt(100),
     posttime: faker.date.past(),
     lastupdatetime: faker.date.past()

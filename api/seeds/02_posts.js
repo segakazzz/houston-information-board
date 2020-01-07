@@ -18,7 +18,8 @@ const fakePosts = [...Array(100).keys()].map(() => {
     uuid: replaced,
     posttime: faker.date.past(),
     lastupdatetime: faker.date.past(),
-    category: categories[Math.floor(Math.random() * categories.length)]
+    category: categories[Math.floor(Math.random() * categories.length)],
+    userid: Math.ceil(Math.random() * 10)
   }
 })
 
