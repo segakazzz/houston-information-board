@@ -1,15 +1,19 @@
 import React from 'react'
 import BulletinBoardPosts from './BulletinBoardPosts'
-import BulletinBoardForm from './BulletinBoardForm'
-import { fetchPosts, submitPost, openDialog, closeDialog } from '../redux/bulletinBoardReducer'
+import BulletinBoardDialog from './BulletinBoardDialog'
+import {Button} from '@material-ui/core'
+import { fetchPosts, submitPost, openDialog, closeDialog, addInformationToPost } from '../redux/bulletinBoardReducer'
 import { connect } from 'react-redux'
 // import Loading from './Loading'
 
 const BulletinBoard = props => {
+  // console.log(props)
   return (
     <div style={{width: '100%'}}>
-      <BulletinBoardForm {...props} />
+      <Button onClick={() => props.openDialog()} color="primary">Create New Post</Button>
+      {/* <BulletinBoardForm {...props} /> */}
       <BulletinBoardPosts {...props} />
+      <BulletinBoardDialog {...props}/>      
     </div>
   )
 }
@@ -23,8 +27,9 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
     submitPost: form => dispatch(submitPost(form)),
-    openDialog: dialogType => dispatch(openDialog(dialogType)),
-    closeDialog: () => dispatch(closeDialog())
+    openDialog: () => dispatch(openDialog()),
+    closeDialog: () => dispatch(closeDialog()),
+    addInformationToPost: (infoType) => dispatch(addInformationToPost(infoType))
 
     // updateForm: (type, value)=> dispatch(updateForm())
   }

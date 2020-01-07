@@ -90,6 +90,7 @@ const useStyles = makeStyles(theme => ({
 const BulletinBoardActionIcons = (props) => {
   const classes = useStyles()
 
+
   return (
     <div className={classes.root}>
       {icons.map(icon => (
@@ -98,7 +99,7 @@ const BulletinBoardActionIcons = (props) => {
           key={icon.title}
           className={classes.icon}
           focusVisibleClassName={classes.focusVisible}
-          onClick={()=>props.openDialog(icon.title)}
+          onClick={()=>props.addInformationToPost(icon.title)}
         >
           <span
             className={classes.iconSrc}

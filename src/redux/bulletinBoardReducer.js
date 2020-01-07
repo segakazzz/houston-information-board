@@ -9,6 +9,8 @@ const RESPONSE_SUBMIT_POST = 'RESPONSE_SUBMIT_POST'
 const OPEN_DIALOG = 'OPEN_DIALOG'
 const CLOSE_DIALOG = 'CLOSE_DIALOG'
 
+const ADD_INFORMATION_TO_POST = 'ADD_INFORMATION_TO_POST'
+
 const POSTS_URL = 'http://localhost:5000/posts'
 
 
@@ -74,16 +76,22 @@ const failRequest = error => {
   }
 }
 
-export const openDialog = dialogType => {
+export const openDialog = () => {
   return {
-    type: OPEN_DIALOG,
-    dialogType: dialogType
+    type: OPEN_DIALOG
   }
 }
 
 export const closeDialog = () => {
   return {
     type: CLOSE_DIALOG
+  }
+}
+
+export const addInformationToPost = infoType => {
+  return {
+    type: ADD_INFORMATION_TO_POST,
+    informationType: infoType
   }
 }
 
@@ -107,7 +115,7 @@ export const submitPost = form => {
         }
       })
       .then(json => {
-        console.log(json)
+        // console.log(json)
         dispatch(responseSubmitPost(json.data))
       })
       .catch(error => {})
@@ -149,11 +157,13 @@ export default (state = initialState, action) => {
       return { ...state, isSubmitting: true}
     case RESPONSE_SUBMIT_POST:
       const newPosts = action.newPost.concat(state.posts) 
-      return { ...state, isSubmitting: false, posts: newPosts}
+      return { ...state, isSubmitting: false, posts: newPosts, openDialog: false}
     case OPEN_DIALOG:
-      return { ...state, openDialog: true, dialogType: action.dialogType }
+      return { ...state, openDialog: true }
     case CLOSE_DIALOG:
-      return { ...state, openDialog: false, dialogType: null }
+      return { ...state, openDialog: false }
+    case ADD_INFORMATION_TO_POST:
+      return { ...state, informationType: action.informationType }
     default:
       return { ...state }
   }
