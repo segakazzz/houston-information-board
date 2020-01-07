@@ -12,7 +12,6 @@ import PublishIcon from '@material-ui/icons/Publish'
 class BulletinBoardDialog extends React.Component {
 
   constructor(props){
-    // console.log(props)
     super(props)
     this.state = {
       title: '',
@@ -39,8 +38,6 @@ class BulletinBoardDialog extends React.Component {
   }
 
   submitPost () {
-    console.log('submitting...')
-    console.log(this.state)
     this.props.submitPost(this.state)
     this.setState({
       title: '',
